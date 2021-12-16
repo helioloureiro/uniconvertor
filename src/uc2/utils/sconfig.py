@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #
+#  Copyleft  (L) 2021 by Helio Loureiro
 #  Copyright (C) 2017-2018 by Ihor E. Novikov
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -52,7 +53,7 @@ class SerializedConfig(object):
                 line = fsutils.get_utf8_path('self.%s' % line)
                 try:
                     code = compile(line, '<string>', 'exec')
-                    exec code
+                    exec(code)
                 except Exception as e:
                     LOG.error('ERROR>>> %s\n%s', line, e)
             fileobj.close()

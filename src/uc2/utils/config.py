@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #
+#  Copyleft  (L) 2021 by Helio Loureiro
 #  Copyright (C) 2012 by Ihor E. Novikov
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -137,7 +138,7 @@ class XMLPrefReader(handler.ContentHandler):
             try:
                 line = 'self.value=' + self.value
                 code = compile(line, '<string>', 'exec')
-                exec code
+                exec(code)
                 self.pref.__dict__[self.key] = self.value
             except Exception as e:
                 LOG.error('Error in "%s" %s', self.value, e)

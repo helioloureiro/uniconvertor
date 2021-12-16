@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #
+#  Copyleft  (L) 2021 by Helio Loureiro
 #  Copyright (C) 2013 by Ihor E. Novikov
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -69,7 +70,7 @@ class SK1Loader(AbstractLoader):
             if self.line:
                 try:
                     code = compile('self.' + self.line, '<string>', 'exec')
-                    exec code
+                    exec(code)
                 except Exception as e:
                     LOG.warn('Parsing error in "%s"', self.line)
                     LOG.warn('Error traceback: %s', e)
@@ -372,14 +373,11 @@ class SK1Loader(AbstractLoader):
         self.add_object(obj)
 
     def _decode_text(self, text):
-        output = ''
-        for word in text.split('\u')[1:]:
-            num = int(word, 16)
-            if num > 256:
-                output += ('\u' + word).decode('raw_unicode_escape')
-            else:
-                output += chr(int(num)).decode('latin1')
-        return output
+       # not exactly sure what this is supposed to do 
+       # it seems some odd code to... translate charset from utf-8?
+        if sys.getfilesystemencoding() == 'utf-8':
+            return text
+        return text.encode('latin-1').decode('utf-8')
 
     def bm(self, obj_id):
         bmd_obj = SK1BitmapData(obj_id)

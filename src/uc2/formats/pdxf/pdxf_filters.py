@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #
+#  Copyleft  (L) 2021 by Helio Loureiro
 #  Copyright (C) 2011 by Ihor E. Novikov
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -163,7 +164,7 @@ class XMLDocReader(handler.ContentHandler):
             for item in attrs._attrs.keys():
                 line = 'self.value=' + attrs._attrs[item]
                 code = compile(line, '<string>', 'exec')
-                exec code
+                exec(code)
                 obj.__dict__[item] = self.value
 
             if self.parent_stack:

@@ -17,22 +17,22 @@ sK1 Project (https://sk1project.net)
 
 ---
 
-* to build package:   `python setup.py build`
-* to install package:   `python setup.py install`
-* to remove installation: `python setup.py uninstall`
+* to build package:   `python3 setup.py build`
+* to install package:   `python3 setup.py install`
+* to remove installation: `python3 setup.py uninstall`
 
 ---
 
-* to create source distribution:   `python setup.py sdist`
+* to create source distribution:   `python3 setup.py sdist`
 
 ---
 
-* to create binary RPM distribution:  `python setup.py bdist_rpm`
-* to create binary DEB distribution:  `python setup.py bdist_deb`
+* to create binary RPM distribution:  `python3 setup.py bdist_rpm`
+* to create binary DEB distribution:  `python3 setup.py bdist_deb`
 
 ---
 
-* help on available distribution formats: `python setup.py bdist --help-formats`
+* help on available distribution formats: `python3 setup.py bdist --help-formats`
 
 ---
 
@@ -42,15 +42,15 @@ sK1 Project (https://sk1project.net)
 If you wish testing UniConvertor 2.0 you have two installation ways. 
 First option is a distutils install with commands:
 ```
-python setup.py build
-python setup.py install
+python3 setup.py build
+python3 setup.py install
 ```
 
 But this way is not recommended. The most preferred option is a package 
 installation (deb or rpm). You can create package using command:
 ```
-python setup.py bdist_deb (for Ubuntu|Mint|Debian etc.)
-python setup.py bdist_rpm (for Fedora|OpenSuse|Mageia etc.)
+python3 setup.py bdist_deb (for Ubuntu|Mint|Debian etc.)
+python3 setup.py bdist_rpm (for Fedora|OpenSuse|Mageia etc.)
 ```
 
 By installing the package you have full control over all the installed files 
@@ -59,8 +59,7 @@ preview).
 
 ### Dependencies
 
-Please note that application uses Python 2.x version. So Python interpreter
-and python based dependencies should be for 2.x, but not 3.x
+Minimal supported is Python 3.6.
 
 For successful build either distutils or deb|rpm package you need installing
 some development packages. We describe dev-packages for Ubuntu|Debian, but for
@@ -72,13 +71,13 @@ libcairo2-dev
 liblcms2-dev
 libmagickwand-dev
 libpango1.0-dev
-python-dev
-python-cairo-dev
+python3-dev
+python3-cairo-dev
 ```
 
 To run application you need installing also:
 ```
-python-pil 
-python-reportlab
-python-cairo
+python3-pil 
+python3-reportlab
+python3-cairo
 ```

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #
+#  Copyleft  (L) 2021 by Helio Loureiro
 #  Copyright (C) 2011-2017 by Ihor E. Novikov
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -18,7 +19,7 @@
 import copy
 from copy import deepcopy
 
-import libcms
+from . import libcms
 
 from uc2 import uc2const
 from uc2.uc2const import COLOR_RGB, COLOR_CMYK, COLOR_LAB, COLOR_GRAY, \

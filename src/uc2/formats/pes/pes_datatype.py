@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #
+#  Copyleft  (L) 2021 by Helio Loureiro
 #  Copyright (C) 2009-2019 by Maxim S. Barabash
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -24,7 +25,7 @@ packer_b2 = struct.Struct("BB")
 
 def unpack_stitch(data):
     d1, d2 = packer_b2.unpack(data[:2])
-    print d1, d2
+    print( d1, d2)
 
     # x = decode_x(d1, d2, d3)
     # y = decode_y(d1, d2, d3)

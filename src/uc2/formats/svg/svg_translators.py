@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #
+#  Copyleft  (L) 2021 by Helio Loureiro
 #  Copyright (C) 2016-2018 by Ihor E. Novikov
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -386,7 +387,7 @@ class SVG_to_SK2_Translator(object):
                 try:
                     code = compile('dash=[' + style['stroke-dasharray'] + ']',
                                    '<string>', 'exec')
-                    exec code
+                    exec(code)
                 except Exception:
                     dash = []
             if dash:

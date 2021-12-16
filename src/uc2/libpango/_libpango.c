@@ -16,11 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#define PY_SSIZE_T_CLEAN
 #include <Python.h>
 #include <pango/pango.h>
 #include <pango/pangocairo.h>
 #include <cairo.h>
-#include <pycairo.h>
+#include <py3cairo.h>
 
 static Pycairo_CAPI_t *Pycairo_CAPI;
 
@@ -573,9 +574,21 @@ PyMethodDef pango_methods[] = {
 	{NULL, NULL}
 };
 
-void
-init_libpango(void)
+PyMODINIT_FUNC
+PyInit_client(void)
 {
-    Py_InitModule("_libpango", pango_methods);
-    Pycairo_IMPORT;
+  PyObject *m;
+  PyModuleDef clientmodule;
+
+  m = PyModule_Create(&clientmodule);
+  if (m == NULL) {
+    return NULL;
+  }
+  if (import_cairo() <0){
+    return NULL;
+  }
+  Py_InitModule("_libpango", pango_methods);
+  // Pycairo_IMPORT;
+  return m;
 }
+

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #
+#  Copyleft  (L) 2021 by Helio Loureiro
 #  Copyright (C) 2016 by Ihor E. Novikov
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -62,7 +63,7 @@ class SK_Loader(AbstractLoader):
             if self.line:
                 try:
                     code = compile('self.' + self.line, '<string>', 'exec')
-                    exec code
+                    exec(code)
                 except Exception as e:
                     LOG.error('Parsing error in "%s"', self.line)
                     LOG.error('Error traceback: %s', e)

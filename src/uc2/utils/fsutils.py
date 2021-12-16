@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #
+#  Copyleft  (L) 2021 by Helio Loureiro
 #  Copyright (C) 2003-2021 by Ihor E. Novikov
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -31,8 +32,9 @@ LOG = logging.getLogger(__name__)
 IS_MSW = system.get_os_family() == system.WINDOWS
 IS_MAC = system.get_os_family() == system.MACOSX
 
-HOME = os.path.expanduser('~') \
-    .decode(sys.getfilesystemencoding()).encode('utf-8')
+HOME = os.path.expanduser('~')
+if sys.getfilesystemencoding() != 'utf-8':
+    HOME.decode(sys.getfilesystemencoding()).encode('utf-8')
 
 
 def expanduser(path=''):

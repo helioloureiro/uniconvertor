@@ -2,6 +2,7 @@
 #
 #  cms - module which provides binding to LittleCMS2 library.
 #
+#  Copyleft  (L) 2021 by Helio Loureiro
 #  Copyright (C) 2012-2018 by Ihor E. Novikov
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -20,7 +21,7 @@
 import os
 from PIL import Image
 
-import _cms
+from . import _cms
 
 from uc2 import uc2const
 
@@ -36,8 +37,9 @@ def get_version():
     :return: version string
     """
     ver = str(_cms.getVersion())
-    return '%s.%s' % (ver[0], ver[2]) if ver[0] == '2' \
-        else '%s.%s' % (ver[0], ver[1:])
+    if ver[0] == '2':
+        return f'{ver[0]}.{ver[2]}'
+    return f'{ver[0]}.{ver[1:]}'
 
 
 COLOR_RNG = range(256)

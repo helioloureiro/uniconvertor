@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #
+#  Copyleft  (L) 2021 by Helio Loureiro
 #  Copyright (C) 2016 by Ihor E. Novikov
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -75,7 +76,7 @@ def get_svg_trafo(strafo):
         tr = tr.replace(', ', ',').replace(' ', ',').replace('))', ')')
         try:
             code = compile('tr=trafo_' + tr, '<string>', 'exec')
-            exec code
+            exec(code)
         except:
             continue
         trafo = libgeom.multiply_trafo(trafo, tr)

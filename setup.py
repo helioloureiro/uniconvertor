@@ -1,7 +1,8 @@
-#!/usr/bin/python2
+#!/usr/bin/env python3
 #
 #   Setup script for UniConvertor 2.x
 #
+# 	Copyleft  (L) 2021 by Helio Loureiro
 # 	Copyright (C) 2013-2018 by Ihor E. Novikov
 #
 # 	This program is free software: you can redistribute it and/or modify
@@ -22,15 +23,15 @@ from __future__ import print_function
 """
 Usage: 
 --------------------------------------------------------------------------
- to build package:       python setup.py build
- to install package:     python setup.py install
- to remove installation: python setup.py uninstall
+ to build package:       python3 setup.py build
+ to install package:     python3 setup.py install
+ to remove installation: python3 setup.py uninstall
 --------------------------------------------------------------------------
- to create source distribution:   python setup.py sdist
+ to create source distribution:   python3 setup.py sdist
 --------------------------------------------------------------------------
- to create binary RPM distribution:  python setup.py bdist_rpm
+ to create binary RPM distribution:  python3 setup.py bdist_rpm
 --------------------------------------------------------------------------
- to create binary DEB distribution:  python setup.py bdist_deb
+ to create binary DEB distribution:  python3 setup.py bdist_deb
 --------------------------------------------------------------------------.
  Help on available distribution formats: --help-formats
 """
@@ -53,7 +54,7 @@ if not os.path.exists('./utils'):
         if not os.path.exists('./subproj/build-utils/src/utils'):
             os.makedirs('./subproj')
             os.system('cd subproj && git clone '
-                      'https://github.com/sk1project/build-utils && cd ..')
+                      'https://github.com/helioloureiro/build-utils && cd ..')
         os.system('ln -s ./subproj/build-utils/src/utils utils')
     CLEAR_UTILS = True
 
@@ -88,8 +89,8 @@ VERSION = uc2const.VERSION + uc2const.REVISION
 DESCRIPTION = 'Universal vector graphics translator'
 AUTHOR = 'Ihor E. Novikov'
 AUTHOR_EMAIL = 'sk1.project.org@gmail.com'
-MAINTAINER = AUTHOR
-MAINTAINER_EMAIL = AUTHOR_EMAIL
+MAINTAINER = 'Helio Loureiro'
+MAINTAINER_EMAIL =  'helio@loureiro.eng.br'
 LICENSE = 'GPL v3'
 URL = 'https://sk1project.net'
 DOWNLOAD_URL = URL
@@ -176,17 +177,12 @@ package_data = {}
 # Preparing start script
 src_script = 'src/script/uniconvertor.tmpl'
 dst_script = 'src/script/uniconvertor'
-fileptr = open(src_script, 'rb')
-fileptr2 = open(dst_script, 'wb')
-while True:
-    line = fileptr.readline()
-    if line == '':
-        break
-    if '$APP_INSTALL_PATH' in line:
-        line = line.replace('$APP_INSTALL_PATH', install_path)
-    fileptr2.write(line)
-fileptr.close()
-fileptr2.close()
+with open(src_script) as source:
+    with open(dst_script, 'w') as destination:
+        for line in source.readlines():
+            if '$APP_INSTALL_PATH' in line:
+                line = line.replace('$APP_INSTALL_PATH', install_path)
+            destination.write(line)
 shutil.copy(dst_script, 'src/script/uc2')
 
 ############################################################
@@ -297,7 +293,7 @@ if not UPDATE_MODULES:
 
 ############################################################
 # This section for developing purpose only
-# Command 'python setup.py build_update' allows
+# Command 'python3setup.py build_update' allows
 # automating build and copying of native extensions
 # into package directory
 ############################################################

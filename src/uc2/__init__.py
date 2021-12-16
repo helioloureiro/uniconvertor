@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #
+#  Copyleft  (L) 2021 by Helio Loureiro
 #  Copyright (C) 2011-2018 by Ihor E. Novikov
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -29,9 +30,12 @@ _ = translator.MsgTranslator()
 def uc2_init():
     """UniConvertor initializing routine."""
 
-    _pkgdir = __path__[0].decode(sys.getfilesystemencoding()).encode('utf-8')
+    if sys.getfilesystemencoding() == 'utf-8':
+        _pkgdir = __path__[0]
+    else:
+        _pkgdir = __path__[0].decode(sys.getfilesystemencoding()).encode('utf-8')
 
-    from application import UCApplication
+    from .application import UCApplication
 
     app = UCApplication(_pkgdir)
     return app
